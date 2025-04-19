@@ -1,9 +1,3 @@
-# Examenopdracht Front-end Web Development & Web Services
-
-- Student: ALEXANDRU POENARU
-- Studentennummer: 202397894
-- E-mailadres: <mailto:alexandru.poenaru@student.hogent.be>
-
 ## Vereisten
 
 Ik verwacht dat volgende software reeds geïnstalleerd is:
