@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Gebruiker {
+  id                 Int          @id @default(autoincrement()) @db.UnsignedInt
+  naam               String       @db.VarChar(255)
+  voornaam           String       @db.VarChar(255)
+  emailadres         String       @unique(map: "idx_user_email_unique") @db.VarChar(255)
+  wachtwoord         String       @db.VarChar(255)
+  eigenAgendablokken Agendablok[]
+  aangemaakteTaken   Taak[]
+  eigenTaken         Taak[]       @relation("taakGemaaktVoor")
+
+  @@map("gebruikers")
+}
+
+model Agendablok {
+  id               Int       @id @default(autoincrement()) @db.UnsignedInt
+  agendablokVan    Int       @db.UnsignedInt
+  titel            String    @db.VarChar(255)
+  datumVan         DateTime  @db.DateTime(0)
+  datumTot         DateTime  @db.DateTime(0)
+  taakInAgendablok Int?      @db.UnsignedInt
+  taak             Taak?     @relation(fields: [taakInAgendablok], references: [id], onDelete: Cascade, onUpdate: Cascade, map: "fk_agendablok_taak")
+  gebruiker        Gebruiker @relation(fields: [agendablokVan], references: [id], onDelete: Cascade, onUpdate: Cascade, map: "fk_agendablok_gebruiker")
+
+  @@map("agendablokken")
+}
+
+model Taak {
+  id           Int          @id @default(autoincrement()) @db.UnsignedInt
+  titel        String       @db.VarChar(255)
+  beschrijving String       @db.Text
+  prioriteit   Prioriteit
+  afgewerkt    Boolean      @default(false)
+  gebruiker    Int          @db.UnsignedInt
+  gemaaktDoor  Gebruiker    @relation(fields: [gebruiker], references: [id], onDelete: Cascade, onUpdate: Cascade, map: "fk_taak_gebruiker")
+  gemaaktVoor  Gebruiker[]  @relation("taakGemaaktVoor")
+  agendablok   Agendablok[]
+
+  @@map("taken")
+}
+
+enum Prioriteit {
+  NIET_DRINGEND
+  DRINGEND
+  HEEL_DRINGEND
+}

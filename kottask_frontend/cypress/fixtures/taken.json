@@ -1,0 +1,66 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "titel": "Afwas doen",
+            "beschrijving": "Afwas doen",
+            "prioriteit": "NIET_DRINGEND",
+            "gemaaktDoor": {
+                "id": 3,
+                "naam": "Samyn",
+                "voornaam": "Karine"
+            },
+            "gemaaktVoor": [
+                {
+                    "id": 1,
+                    "naam": "Aelbrecht",
+                    "voornaam": "Thomas"
+                }
+            ],
+            "afgewerkt": false
+        },
+        {
+            "id": 2,
+            "titel": "Stofzuigen",
+            "beschrijving": "Stofzuigen in de keuken, goed in de hoekjes",
+            "prioriteit": "HEEL_DRINGEND",
+            "gemaaktDoor": {
+                "id": 2,
+                "naam": "Poenaru",
+                "voornaam": "Alexandru"
+            },
+            "gemaaktVoor": [
+                {
+                    "id": 1,
+                    "naam": "Aelbrecht",
+                    "voornaam": "Thomas"
+                },
+                {
+                    "id": 3,
+                    "naam": "Samyn",
+                    "voornaam": "Karine"
+                }
+            ],
+            "afgewerkt": false
+        },
+        {
+            "id": 3,
+            "titel": "Verluchten",
+            "beschrijving": "Verlucht nog eens je kamer, er komt een vreemde geur uit jouw kamer...",
+            "prioriteit": "DRINGEND",
+            "gemaaktDoor": {
+                "id": 1,
+                "naam": "Aelbrecht",
+                "voornaam": "Thomas"
+            },
+            "gemaaktVoor": [
+                {
+                    "id": 2,
+                    "naam": "Poenaru",
+                    "voornaam": "Alexandru"
+                }
+            ],
+            "afgewerkt": false
+        }
+    ]
+}
